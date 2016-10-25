@@ -1,0 +1,20 @@
+package ar.edu.utn.d2s.model.points;
+
+import ar.edu.utn.d2s.model.Address;
+
+public class BusStop {
+
+    Address address;
+
+    public BusStop(Address address) {
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+}
