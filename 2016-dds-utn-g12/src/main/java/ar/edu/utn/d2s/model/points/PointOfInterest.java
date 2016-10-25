@@ -1,12 +1,12 @@
 package ar.edu.utn.d2s.model.points;
 
-import ar.edu.utn.d2s.model.Address;
+import ar.edu.utn.d2s.model.addres.Address;
 
 public class PointOfInterest {
 
-    String name;
-    String icon;
-    Address address;
+    private String name;
+    private String icon;
+    private Address address;
 
     public PointOfInterest(String name, String icon, Address address) {
         this.name = name;
@@ -16,7 +16,7 @@ public class PointOfInterest {
 
     public String getName() {
         if(name == null) {
-            return "";
+            name = "";
         }
         return name;
     }
@@ -27,7 +27,7 @@ public class PointOfInterest {
 
     public String getIcon() {
         if (icon == null) {
-            return "";
+            icon = "";
         }
         return icon;
     }

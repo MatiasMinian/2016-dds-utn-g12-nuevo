@@ -1,6 +1,6 @@
 package ar.edu.utn.d2s.model.points;
 
-import ar.edu.utn.d2s.model.Address;
+import ar.edu.utn.d2s.model.addres.Address;
 
 import java.util.ArrayList;
 import java.util.List;

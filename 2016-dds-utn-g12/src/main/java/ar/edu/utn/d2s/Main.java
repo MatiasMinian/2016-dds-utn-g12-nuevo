@@ -1,9 +1,5 @@
 package ar.edu.utn.d2s;
 
-/**
- * Hello world!
- *
- */
 public class Main
 {
     public static void main( String[] args )
