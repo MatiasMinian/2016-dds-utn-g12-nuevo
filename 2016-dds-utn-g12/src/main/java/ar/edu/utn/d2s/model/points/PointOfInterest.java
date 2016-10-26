@@ -24,7 +24,6 @@ public abstract class PointOfInterest {
     }
 
 
-
     //********** GETTERS & SETTERS **********//
 
     public String getName() {
