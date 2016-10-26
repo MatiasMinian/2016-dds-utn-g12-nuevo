@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Bus extends PointOfInterest {
 
-    List<BusStop> stops;
+    private List<BusStop> stops;
 
     public Bus(String name, String icon, Address address, List<BusStop> stops) {
         super(name, icon, address);
