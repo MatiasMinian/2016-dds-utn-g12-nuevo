@@ -1,18 +1,15 @@
 package ar.edu.utn.d2s.model.points;
 
-import ar.edu.utn.d2s.model.addres.Coordinate;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.uqbar.geodds.Polygon;
 
 public class Commune {
 
-    int number;
-    List<Coordinate> coordinates;
+    private int number;
+    private Polygon surface;
 
-    public Commune(int number, List<Coordinate> coordinates) {
+    public Commune(int number, Polygon surface) {
         this.number = number;
-        this.coordinates = coordinates;
+        this.surface = surface;
     }
 
     public int getNumber() {
@@ -23,14 +20,11 @@ public class Commune {
         this.number = number;
     }
 
-    public List<Coordinate> getCoordinates() {
-        if (coordinates == null) {
-            coordinates = new ArrayList<>();
-        }
-        return coordinates;
+    public Polygon getSurface() {
+        return surface;
     }
 
-    public void setCoordinates(List<Coordinate> coordinates) {
-        this.coordinates = coordinates;
+    public void setSurface(Polygon surface) {
+        this.surface = surface;
     }
 }

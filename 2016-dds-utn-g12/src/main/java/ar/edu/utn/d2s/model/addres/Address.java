@@ -16,11 +16,11 @@ public class Address {
     private String district;
     private String state;
     private String country;
-    private Coordinate coordinate;
+    private Point point;
 
     public Address(String mainStreet, String street1, String street2, int streetNumber, byte floor, byte apartment,
                    byte unit, int postalCode, String city, String district, String state, String country,
-                   Coordinate coordinate) {
+                   Point point) {
         this.mainStreet = mainStreet;
         this.street1 = street1;
         this.street2 = street2;
@@ -33,7 +33,7 @@ public class Address {
         this.district = district;
         this.state = state;
         this.country = country;
-        this.coordinate = coordinate;
+        this.point = point;
     }
 
     public String getMainStreet() {
@@ -153,11 +153,11 @@ public class Address {
         this.country = country;
     }
 
-    public Coordinate getCoordinate() {
-        return coordinate;
+    public Point getPoint() {
+        return point;
     }
 
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }
