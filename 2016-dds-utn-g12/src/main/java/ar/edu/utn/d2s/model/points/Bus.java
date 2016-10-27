@@ -5,6 +5,7 @@ import ar.edu.utn.d2s.model.config.PointOfInterestConfig;
 import org.uqbar.geodds.Point;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Bus extends PointOfInterest {
@@ -22,6 +23,11 @@ public class Bus extends PointOfInterest {
     @Override
     public boolean isClose(Point point) {
         return stops.stream().anyMatch(stop -> point.distance(stop.getAddress().getPoint()) < this.closeRange);
+    }
+
+    @Override
+    public boolean isOpen(Calendar date, String value) {
+        return true;
     }
 
     //********** GETTERS & SETTERS **********//

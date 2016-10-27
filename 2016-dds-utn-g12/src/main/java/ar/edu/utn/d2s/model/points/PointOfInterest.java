@@ -4,6 +4,8 @@ import ar.edu.utn.d2s.model.addres.Address;
 import ar.edu.utn.d2s.model.config.PointOfInterestConfig;
 import org.uqbar.geodds.Point;
 
+import java.util.Calendar;
+
 public abstract class PointOfInterest {
 
     protected String name;
@@ -22,6 +24,8 @@ public abstract class PointOfInterest {
     public boolean isClose(Point point) {
         return point.distance(address.getPoint()) < closeRange;
     }
+
+    public abstract boolean isOpen(Calendar date, String value);
 
 
     //********** GETTERS & SETTERS **********//
