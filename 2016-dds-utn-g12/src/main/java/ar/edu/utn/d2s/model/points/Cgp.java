@@ -10,9 +10,10 @@ public class Cgp extends PointOfInterest {
     private Commune commune;
     private List<Service> services;
 
-    //TODO Take this constructor out and create corresponding one when all fields are defined
-    public Cgp(String name, String icon, Address address) {
+    public Cgp(String name, String icon, Address address, Commune commune, List<Service> services) {
         super(name, icon, address);
+        this.commune = commune;
+        this.services = services;
     }
 
     //********** METHODS **********//
@@ -24,5 +25,19 @@ public class Cgp extends PointOfInterest {
 
     //********** GETTERS & SETTERS **********//
 
-    // TODO Getters & Setters
+    public Commune getCommune() {
+        return commune;
+    }
+
+    public void setCommune(Commune commune) {
+        this.commune = commune;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
 }

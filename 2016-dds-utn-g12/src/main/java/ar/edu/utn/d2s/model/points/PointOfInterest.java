@@ -20,7 +20,7 @@ public abstract class PointOfInterest {
     //********** METHODS **********//
 
     public boolean isClose(Point point) {
-        return point.distance(this.address.getPoint()) < closeRange;
+        return point.distance(address.getPoint()) < closeRange;
     }
 
 
