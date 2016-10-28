@@ -1,8 +1,11 @@
 package ar.edu.utn.d2s.model.points;
 
 import ar.edu.utn.d2s.model.addres.Address;
+import ar.edu.utn.d2s.model.openhours.DayEnum;
+import com.sun.istack.internal.Nullable;
 import org.uqbar.geodds.Point;
 
+import java.time.LocalTime;
 import java.util.*;
 
 public class Cgp extends PointOfInterest {
@@ -24,16 +27,16 @@ public class Cgp extends PointOfInterest {
     }
 
     @Override
-    public boolean isOpen(Calendar date, String serviceName) {
+    public boolean isOpen(DayEnum day, LocalTime time, String serviceName) {
         if (getServices().isEmpty()) {
-            throw new RuntimeException("CGP doesn't have services. Should have one at least.");
+            throw new RuntimeException("CGP doesn't have services. Must have one at least.");
         }
 
         if (serviceName == null) {
-            return getServices().stream().anyMatch(service -> service.isOpen(date));
+            return services.stream().anyMatch(service -> service.isOpen(day, time));
         } else {
             Optional<Service> serviceOptional = services.stream().filter(service -> service.getName().equals(serviceName)).findFirst();
-            return serviceOptional.orElseThrow(() -> new IllegalArgumentException("Field serviceName must have a valid name of a service.")).isOpen(date);
+            return serviceOptional.orElseThrow(() -> new IllegalArgumentException("Field serviceName must have a valid name of a service.")).isOpen(day, time);
         }
     }
 
@@ -49,7 +52,7 @@ public class Cgp extends PointOfInterest {
 
     public Set<Service> getServices() {
         if (services == null) {
-            return new HashSet<>();
+            services = new HashSet<>();
         }
         return services;
     }

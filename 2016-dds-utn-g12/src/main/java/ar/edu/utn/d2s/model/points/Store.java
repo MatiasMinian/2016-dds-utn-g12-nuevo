@@ -1,17 +1,20 @@
 package ar.edu.utn.d2s.model.points;
 
 import ar.edu.utn.d2s.model.addres.Address;
+import ar.edu.utn.d2s.model.openhours.DayEnum;
 import org.uqbar.geodds.Point;
 
-import java.util.List;
+import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Store extends PointOfInterest {
 
     private String attentionSchedule;
     private Category category;
-    private List<String> keywords;
+    private Set<String> keywords;
 
-    public Store(String name, String icon, Address address, String attentionSchedule, Category category, List<String> keywords) {
+    public Store(String name, String icon, Address address, String attentionSchedule, Category category, Set<String> keywords) {
         super(name, icon, address);
         this.attentionSchedule = attentionSchedule;
         this.category = category;
@@ -24,6 +27,12 @@ public class Store extends PointOfInterest {
     @Override
     public boolean isClose(Point point) {
         return point.distance(address.getPoint()) < category.getCloseRange();
+    }
+
+    @Override
+    public boolean isOpen(DayEnum day, LocalTime time, String value) {
+        //TODO Implement this method
+        return false;
     }
 
     //********** GETTERS & SETTERS **********//
@@ -44,11 +53,14 @@ public class Store extends PointOfInterest {
         this.category = category;
     }
 
-    public List<String> getKeywords() {
+    public Set<String> getKeywords() {
+        if (keywords == null) {
+            keywords = new HashSet<>();
+        }
         return keywords;
     }
 
-    public void setKeywords(List<String> keywords) {
+    public void setKeywords(Set<String> keywords) {
         this.keywords = keywords;
     }
 }

@@ -11,6 +11,9 @@ public class Category {
     }
 
     public String getName() {
+        if (name == null) {
+            name = "";
+        }
         return name;
     }
 
