@@ -4,22 +4,22 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AttentionSchedule {
+public class TimeSchedule {
 
     private Map<DayEnum, WorkHours> openHours;
 
-    public AttentionSchedule(Map<DayEnum, WorkHours> openHours) {
+    public TimeSchedule(Map<DayEnum, WorkHours> openHours) {
         this.openHours = openHours;
     }
 
     //********** STATIC METHODS **********//
 
     /**
-     * Obtains an AttentionSchedule with the same work hours for the entire
+     * Obtains an TimeSchedule with the same work hours for the entire
      * business week (From Monday to Saturday)
-     * @return an AttentionSchedule
+     * @return an TimeSchedule
      */
-    public static AttentionSchedule forBusinessWeek(WorkHours workHours) {
+    public static TimeSchedule forBusinessWeek(WorkHours workHours) {
         Map<DayEnum, WorkHours> openHours = new HashMap<>();
         openHours.put(DayEnum.MONDAY, workHours);
         openHours.put(DayEnum.TUESDAY, workHours);
@@ -27,7 +27,7 @@ public class AttentionSchedule {
         openHours.put(DayEnum.THURSDAY, workHours);
         openHours.put(DayEnum.FRIDAY, workHours);
         openHours.put(DayEnum.SATURDAY, workHours);
-        return new AttentionSchedule(openHours);
+        return new TimeSchedule(openHours);
 
     }
 
