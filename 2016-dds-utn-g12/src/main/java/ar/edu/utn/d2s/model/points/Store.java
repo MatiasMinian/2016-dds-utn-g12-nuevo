@@ -10,13 +10,13 @@ import java.util.Set;
 
 public class Store extends PointOfInterest {
 
-    private String attentionSchedule;
+    private String timeSchedule;
     private Category category;
     private Set<String> keywords;
 
-    public Store(String name, String icon, Address address, String attentionSchedule, Category category, Set<String> keywords) {
+    public Store(String name, String icon, Address address, String timeSchedule, Category category, Set<String> keywords) {
         super(name, icon, address);
-        this.attentionSchedule = attentionSchedule;
+        this.timeSchedule = timeSchedule;
         this.category = category;
         this.keywords = keywords;
         this.closeRange = category.getCloseRange();
@@ -37,12 +37,12 @@ public class Store extends PointOfInterest {
 
     //********** GETTERS & SETTERS **********//
 
-    public String getAttentionSchedule() {
-        return attentionSchedule;
+    public String getTimeSchedule() {
+        return timeSchedule;
     }
 
-    public void setAttentionSchedule(String attentionSchedule) {
-        this.attentionSchedule = attentionSchedule;
+    public void setTimeSchedule(String timeSchedule) {
+        this.timeSchedule = timeSchedule;
     }
 
     public Category getCategory() {
