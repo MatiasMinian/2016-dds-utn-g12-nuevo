@@ -2,13 +2,33 @@ package ar.edu.utn.d2s.model.openhours;
 
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AttentionSchedule {
 
-    private HashMap<DayEnum, WorkHours> openHours;
+    private Map<DayEnum, WorkHours> openHours;
 
-    public AttentionSchedule(HashMap<DayEnum, WorkHours> openHours) {
+    public AttentionSchedule(Map<DayEnum, WorkHours> openHours) {
         this.openHours = openHours;
+    }
+
+    //********** STATIC METHODS **********//
+
+    /**
+     * Obtains an AttentionSchedule with the same work hours for the entire
+     * business week (From Monday to Saturday)
+     * @return an AttentionSchedule
+     */
+    public static AttentionSchedule forBusinessWeek(WorkHours workHours) {
+        Map<DayEnum, WorkHours> openHours = new HashMap<>();
+        openHours.put(DayEnum.MONDAY, workHours);
+        openHours.put(DayEnum.TUESDAY, workHours);
+        openHours.put(DayEnum.WEDNESDAY, workHours);
+        openHours.put(DayEnum.THURSDAY, workHours);
+        openHours.put(DayEnum.FRIDAY, workHours);
+        openHours.put(DayEnum.SATURDAY, workHours);
+        return new AttentionSchedule(openHours);
+
     }
 
     //********** METHODS **********//
@@ -27,7 +47,7 @@ public class AttentionSchedule {
     //********** GETTERS & SETTERS **********//
 
 
-    public HashMap<DayEnum, WorkHours> getOpenHours() {
+    public Map<DayEnum, WorkHours> getOpenHours() {
         if (openHours == null) {
             openHours = new HashMap<>();
         }
