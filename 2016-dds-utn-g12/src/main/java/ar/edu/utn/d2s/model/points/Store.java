@@ -2,6 +2,7 @@ package ar.edu.utn.d2s.model.points;
 
 import ar.edu.utn.d2s.model.addres.Address;
 import ar.edu.utn.d2s.model.openhours.DayEnum;
+import ar.edu.utn.d2s.model.openhours.TimeSchedule;
 import org.uqbar.geodds.Point;
 
 import java.time.LocalTime;
@@ -10,11 +11,11 @@ import java.util.Set;
 
 public class Store extends PointOfInterest {
 
-    private String timeSchedule;
+    private TimeSchedule timeSchedule;
     private Category category;
     private Set<String> keywords;
 
-    public Store(String name, String icon, Address address, String timeSchedule, Category category, Set<String> keywords) {
+    public Store(String name, String icon, Address address, TimeSchedule timeSchedule, Category category, Set<String> keywords) {
         super(name, icon, address);
         this.timeSchedule = timeSchedule;
         this.category = category;
@@ -31,17 +32,16 @@ public class Store extends PointOfInterest {
 
     @Override
     public boolean isOpen(DayEnum day, LocalTime time, String value) {
-        //TODO Implement this method
-        return false;
+        return timeSchedule.isOpenHour(day, time);
     }
 
     //********** GETTERS & SETTERS **********//
 
-    public String getTimeSchedule() {
+    public TimeSchedule getTimeSchedule() {
         return timeSchedule;
     }
 
-    public void setTimeSchedule(String timeSchedule) {
+    public void setTimeSchedule(TimeSchedule timeSchedule) {
         this.timeSchedule = timeSchedule;
     }
 
