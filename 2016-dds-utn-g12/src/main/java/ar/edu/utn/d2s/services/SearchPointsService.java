@@ -3,6 +3,7 @@ package ar.edu.utn.d2s.services;
 import ar.edu.utn.d2s.database.DatabaseMock;
 import ar.edu.utn.d2s.model.points.BankBranch;
 import ar.edu.utn.d2s.model.points.Bus;
+import ar.edu.utn.d2s.model.points.Cgp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,14 @@ public class SearchPointsService {
         // TODO Instead access data with DAO
         List<Bus> busPoints = new ArrayList<>(DatabaseMock.busPoints);
         return busPoints.stream().filter(bus -> text.equals(bus.getName())).findFirst().orElse(null);
+    }
+
+    public List<Cgp> searchCgpByText(String text) {
+        // TODO Instead access data with DAO
+        List<Cgp> cgpPoints = new ArrayList<>(DatabaseMock.cgpPoints);
+        return cgpPoints.stream().filter(cgp -> cgp.getCommune().getNumber() == Integer.valueOf(text) ||
+                        cgp.getServices().stream().anyMatch(service -> service.getName().startsWith(text)))
+                .collect(Collectors.toList());
     }
 
 }
