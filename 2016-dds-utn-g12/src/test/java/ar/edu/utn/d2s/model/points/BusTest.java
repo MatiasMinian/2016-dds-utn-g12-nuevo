@@ -17,8 +17,7 @@ import static org.junit.Assert.*;
 
 public class BusTest {
 
-    Bus bus114;
-
+    private Bus bus114;
 
     @Before
     public void setUp() throws Exception {

@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class CgpTest {
 
-    Cgp cgp;
+    private Cgp cgp;
 
     @Before
     public void setUp() throws Exception {
