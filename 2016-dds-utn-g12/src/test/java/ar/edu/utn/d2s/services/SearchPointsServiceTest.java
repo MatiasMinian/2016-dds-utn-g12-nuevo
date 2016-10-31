@@ -1,7 +1,9 @@
 package ar.edu.utn.d2s.services;
 
-import ar.edu.utn.d2s.database.DatabaseMock;
-import ar.edu.utn.d2s.model.addres.Address;
+import ar.edu.utn.d2s.database.BankBranchDAOMock;
+import ar.edu.utn.d2s.database.BusDAOMock;
+import ar.edu.utn.d2s.database.CgpDAOMock;
+import ar.edu.utn.d2s.database.StoreDAOMock;
 import ar.edu.utn.d2s.model.points.*;
 import org.junit.After;
 import org.junit.Before;
@@ -51,7 +53,7 @@ public class SearchPointsServiceTest {
         bankBranchPoints.add(bankBranchBankWest);
 
         // TODO Replace the DatabaseMock initialization for Mocked DAOs
-        DatabaseMock.setBankBranchPoints(bankBranchPoints);
+        BankBranchDAOMock.setBankBranchPoints(bankBranchPoints);
 
         //********** BUS SET UP **********//
 
@@ -64,7 +66,7 @@ public class SearchPointsServiceTest {
         busPoints.add(bus157);
 
         // TODO Replace the DatabaseMock initialization for Mocked DAOs
-        DatabaseMock.setBusPoints(busPoints);
+        BusDAOMock.setBusPoints(busPoints);
 
         //********** CGP SET UP **********//
 
@@ -89,7 +91,7 @@ public class SearchPointsServiceTest {
         cgpPoints.add(cgp54);
 
         // TODO Replace the DatabaseMock initialization for Mocked DAOs
-        DatabaseMock.setCgpPoints(cgpPoints);
+        CgpDAOMock.setCgpPoints(cgpPoints);
 
         //********** STORE SET UP **********//
 
@@ -114,7 +116,7 @@ public class SearchPointsServiceTest {
         storePoints.add(storeBookshop);
 
         // TODO Replace the DatabaseMock initialization for Mocked DAOs
-        DatabaseMock.setStorePoints(storePoints);
+        StoreDAOMock.setStorePoints(storePoints);
     }
 
     @After
