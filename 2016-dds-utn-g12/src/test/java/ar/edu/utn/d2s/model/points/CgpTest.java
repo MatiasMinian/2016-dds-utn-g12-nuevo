@@ -50,7 +50,7 @@ public class CgpTest {
     }
 
     @Test
-    public void isOpen() throws Exception {
+    public void isOpenTest() throws Exception {
         assertTrue(cgp.isOpen(DayEnum.MONDAY, LocalTime.of(12, 0), null));
         assertTrue(cgp.isOpen(DayEnum.MONDAY, LocalTime.of(12, 0), "Service1"));
         assertFalse(cgp.isOpen(DayEnum.MONDAY, LocalTime.of(12, 0), "Service2"));
