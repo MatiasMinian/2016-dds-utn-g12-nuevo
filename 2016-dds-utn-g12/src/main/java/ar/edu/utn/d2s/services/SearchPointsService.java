@@ -4,6 +4,7 @@ import ar.edu.utn.d2s.database.DatabaseMock;
 import ar.edu.utn.d2s.model.points.BankBranch;
 import ar.edu.utn.d2s.model.points.Bus;
 import ar.edu.utn.d2s.model.points.Cgp;
+import ar.edu.utn.d2s.model.points.Store;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,4 +40,13 @@ public class SearchPointsService {
                 .collect(Collectors.toList());
     }
 
+    public List<Store> searchStoreByText(String text) {
+        // TODO Instead access data with DAO
+        List<Store> storePoints = new ArrayList<>(DatabaseMock.storePoints);
+        return storePoints.stream().filter(store -> storeFilterCriteria(store, text)).collect(Collectors.toList());
+    }
+
+    public boolean storeFilterCriteria(Store store, String text) {
+        return store.getName().startsWith(text) || store.getKeywords().contains(text) || store.getCategory().getName().equals(text);
+    }
 }
