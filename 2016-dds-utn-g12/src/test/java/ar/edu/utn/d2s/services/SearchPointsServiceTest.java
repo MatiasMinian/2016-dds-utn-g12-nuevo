@@ -131,14 +131,14 @@ public class SearchPointsServiceTest {
     }
 
     @Test
-    public void searchBusByText() throws Exception {
+    public void searchBusByTextTest() throws Exception {
         Bus bus = searchPointsService.searchBusByText("161");
         assertTrue(bus.equals(bus161));
 
     }
 
     @Test
-    public void searchCgpByText() throws Exception {
+    public void searchCgpByTextTest() throws Exception {
         List<Cgp> cgpPoints = searchPointsService.searchCgpByText("110");
         assertTrue(cgpPoints.contains(cgp110));
 
@@ -148,7 +148,7 @@ public class SearchPointsServiceTest {
     }
 
     @Test
-    public void searchStoreByText() throws Exception {
+    public void searchStoreByTextTest() throws Exception {
         List<Store> storePoints = searchPointsService.searchStoreByText("Samsung");
         assertTrue(storePoints.contains(storeSamsung));
         assertTrue(storePoints.contains(storeTech));

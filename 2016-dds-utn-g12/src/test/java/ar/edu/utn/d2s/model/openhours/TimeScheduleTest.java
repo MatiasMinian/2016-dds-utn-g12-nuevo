@@ -29,7 +29,7 @@ public class TimeScheduleTest {
     }
 
     @Test
-    public void isOpenHour() throws Exception {
+    public void isOpenHourTest() throws Exception {
         assertTrue(timeSchedule.isOpenHour(DayEnum.MONDAY, LocalTime.of(14, 0)));
         assertTrue(timeSchedule.isOpenHour(DayEnum.WEDNESDAY, LocalTime.of(11, 15)));
 

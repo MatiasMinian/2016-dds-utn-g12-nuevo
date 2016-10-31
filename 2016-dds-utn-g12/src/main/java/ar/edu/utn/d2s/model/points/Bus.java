@@ -7,13 +7,14 @@ import org.uqbar.geodds.Point;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Bus extends PointOfInterest {
 
-    private List<BusStop> stops;
+    private Set<BusStop> stops;
 
-    public Bus(String name, String icon, Address address, List<BusStop> stops) {
+    public Bus(String name, String icon, Address address, Set<BusStop> stops) {
         super(name, icon, address);
         this.stops = stops;
         this.closeRange = PointOfInterestConfig.BUS_CLOSE_RANGE;
@@ -23,6 +24,9 @@ public class Bus extends PointOfInterest {
 
     @Override
     public boolean isClose(Point point) {
+        if (getStops().isEmpty()) {
+            throw new RuntimeException("Bus doesn't have stops. Must have one at least");
+        }
         return stops.stream().anyMatch(stop -> point.distance(stop.getAddress().getPoint()) < this.closeRange);
     }
 
@@ -33,14 +37,14 @@ public class Bus extends PointOfInterest {
 
     //********** GETTERS & SETTERS **********//
 
-    public List<BusStop> getStops() {
+    public Set<BusStop> getStops() {
         if (stops == null) {
-            stops = new ArrayList<>();
+            stops = new HashSet<>();
         }
         return stops;
     }
 
-    public void setStops(List<BusStop> stops) {
+    public void setStops(Set<BusStop> stops) {
         this.stops = stops;
     }
 }
