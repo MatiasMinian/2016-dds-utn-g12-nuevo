@@ -35,7 +35,7 @@ public class SearchPointsService {
     public List<Cgp> searchCgpByText(String text) {
         // TODO Instead access data with DAO
         List<Cgp> cgpPoints = new ArrayList<>(DatabaseMock.cgpPoints);
-        return cgpPoints.stream().filter(cgp -> cgp.getCommune().getNumber() == Integer.valueOf(text) ||
+        return cgpPoints.stream().filter(cgp -> cgp.getCommune().getNumber().equals(text) ||
                         cgp.getServices().stream().anyMatch(service -> service.getName().startsWith(text)))
                 .collect(Collectors.toList());
     }
@@ -46,7 +46,7 @@ public class SearchPointsService {
         return storePoints.stream().filter(store -> storeFilterCriteria(store, text)).collect(Collectors.toList());
     }
 
-    public boolean storeFilterCriteria(Store store, String text) {
+    private boolean storeFilterCriteria(Store store, String text) {
         return store.getName().startsWith(text) || store.getKeywords().contains(text) || store.getCategory().getName().equals(text);
     }
 }

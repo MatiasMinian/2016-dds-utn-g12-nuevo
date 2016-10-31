@@ -5,10 +5,10 @@ import org.uqbar.geodds.Polygon;
 
 public class Commune {
 
-    private int number;
+    private String number;
     private Polygon surface;
 
-    public Commune(int number, Polygon surface) {
+    public Commune(String number, Polygon surface) {
         this.number = number;
         this.surface = surface;
     }
@@ -21,11 +21,14 @@ public class Commune {
 
     //********** GETTERS & SETTERS **********//
 
-    public int getNumber() {
+    public String getNumber() {
+        if (number == null) {
+            number = "";
+        }
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
