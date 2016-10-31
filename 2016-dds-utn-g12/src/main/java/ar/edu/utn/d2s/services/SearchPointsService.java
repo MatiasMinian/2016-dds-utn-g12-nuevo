@@ -1,6 +1,7 @@
 package ar.edu.utn.d2s.services;
 
 import ar.edu.utn.d2s.database.DatabaseMock;
+import ar.edu.utn.d2s.model.points.BankBranch;
 import ar.edu.utn.d2s.model.points.Bus;
 
 import java.util.ArrayList;
@@ -16,6 +17,12 @@ public class SearchPointsService {
      * if you can return just a list of PointOfInterest or each type of PointOfInterest
      * should be returned
      */
+
+    public List<BankBranch> searchBankBranchByText(String text) {
+        // TODO Instead access data with DAO
+        List<BankBranch> bankBranchPoints = new ArrayList<>(DatabaseMock.bankBranchPoints);
+        return bankBranchPoints.stream().filter(bankBranch -> bankBranch.getName().startsWith(text)).collect(Collectors.toList());
+    }
 
     public Bus searchBusByText(String text) {
         // TODO Instead access data with DAO
