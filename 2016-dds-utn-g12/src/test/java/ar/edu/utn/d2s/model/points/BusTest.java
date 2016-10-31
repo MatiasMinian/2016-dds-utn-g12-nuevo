@@ -10,9 +10,7 @@ import org.uqbar.geodds.Point;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
