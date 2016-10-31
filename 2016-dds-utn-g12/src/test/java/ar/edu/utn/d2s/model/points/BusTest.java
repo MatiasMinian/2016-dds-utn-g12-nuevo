@@ -63,8 +63,8 @@ public class BusTest {
         assertTrue(bus114.isOpen(DayEnum.WEDNESDAY, LocalTime.of(12, 0), ""));
         assertTrue(bus114.isOpen(DayEnum.SATURDAY, LocalTime.of(12, 0), ""));
 
-        assertTrue(bus114.isOpen(DayEnum.MONDAY, LocalTime.of(24, 0), ""));
-        assertTrue(bus114.isOpen(DayEnum.TUESDAY, LocalTime.of(24, 0), ""));
-        assertTrue(bus114.isOpen(DayEnum.SUNDAY, LocalTime.of(24, 0), ""));
+        assertTrue(bus114.isOpen(DayEnum.MONDAY, LocalTime.of(23, 0), ""));
+        assertTrue(bus114.isOpen(DayEnum.TUESDAY, LocalTime.of(23, 0), ""));
+        assertTrue(bus114.isOpen(DayEnum.SUNDAY, LocalTime.of(23, 0), ""));
     }
 }
