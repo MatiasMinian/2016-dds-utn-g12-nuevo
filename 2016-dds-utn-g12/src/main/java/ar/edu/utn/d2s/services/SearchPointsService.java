@@ -18,7 +18,7 @@ public class SearchPointsService {
     /**
      * TODO
      * When UI should be implemented include this four methods in one to respond
-     * to the search pooints by text request, see what data is necessary to know
+     * to the search points by text request, see what data is necessary to know
      * if you can return just a list of PointOfInterest or each type of PointOfInterest
      * should be returned
      */
