@@ -3,7 +3,7 @@ package ar.edu.utn.d2s.externaldependencies.cgp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CgpServiceImplMock implements CgpServiceMock {
+public class CgpAPIImplMock implements CgpAPIMock {
 
     private static List<CenterDTOMock> centersDTO = new ArrayList<>();
 
