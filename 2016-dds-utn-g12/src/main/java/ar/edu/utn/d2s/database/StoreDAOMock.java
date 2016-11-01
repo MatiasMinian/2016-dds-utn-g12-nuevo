@@ -17,15 +17,26 @@ public class StoreDAOMock {
 
     public static List<Store> storePoints = new ArrayList<>();
 
+    //********** METHODS **********//
+
+    public static void saveOrUpdateStorePoint(Store storePoint) {
+        Store targetStorePoint = storePoints.stream().filter(store -> store.getId().equals(storePoint.getId())).findFirst().orElse(null);
+        if (targetStorePoint == null) {
+            storePoints.add(storePoint);
+        } else {
+            targetStorePoint = storePoint;
+        }
+    }
+
+    public static void deleteStorePoint(Store storePoint) {
+        storePoints.remove(storePoint);
+    }
+
     public static List<Store> getStorePoints() {
         return storePoints;
     }
 
     public static void setStorePoints(List<Store> storePoints) {
         StoreDAOMock.storePoints = storePoints;
-    }
-
-    public static void addStorePoints(List<Store> storePoints) {
-        StoreDAOMock.storePoints.addAll(storePoints);
     }
 }

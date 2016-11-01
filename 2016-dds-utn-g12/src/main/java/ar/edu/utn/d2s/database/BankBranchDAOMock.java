@@ -17,15 +17,26 @@ public class BankBranchDAOMock {
 
     public static List<BankBranch> bankBranchPoints = new ArrayList<>();
 
+    //********** METHODS **********//
+
+    public static void saveOrUpdateBankBranchPoint(BankBranch bankBranchPoint) {
+        BankBranch targetBankBranchPoint = bankBranchPoints.stream().filter(bankBranch -> bankBranch.getId().equals(bankBranchPoint.getId())).findFirst().orElse(null);
+        if (targetBankBranchPoint == null) {
+            bankBranchPoints.add(bankBranchPoint);
+        } else {
+            targetBankBranchPoint = bankBranchPoint;
+        }
+    }
+
+    public static void deleteBankBranchPoint(BankBranch bankBranchPoint) {
+        bankBranchPoints.remove(bankBranchPoint);
+    }
+
     public static List<BankBranch> getBankBranchPoints() {
         return bankBranchPoints;
     }
 
     public static void setBankBranchPoints(List<BankBranch> bankBranchPoints) {
         BankBranchDAOMock.bankBranchPoints = bankBranchPoints;
-    }
-
-    public static void addBankBranchPoints(List<BankBranch> bankBranchPoints) {
-        BankBranchDAOMock.bankBranchPoints.addAll(bankBranchPoints);
     }
 }

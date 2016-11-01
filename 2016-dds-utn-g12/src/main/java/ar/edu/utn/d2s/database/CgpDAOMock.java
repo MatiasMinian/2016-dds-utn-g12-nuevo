@@ -17,15 +17,26 @@ public class CgpDAOMock {
 
     public static List<Cgp> cgpPoints = new ArrayList<>();
 
+    //********** METHODS **********//
+
+    public static void saveOrUpdateCgpPoint(Cgp cgpPoint) {
+        Cgp targetCgpPoint = cgpPoints.stream().filter(cgp -> cgp.getId().equals(cgpPoint.getId())).findFirst().orElse(null);
+        if (targetCgpPoint == null) {
+            cgpPoints.add(cgpPoint);
+        } else {
+            targetCgpPoint = cgpPoint;
+        }
+    }
+
+    public static void deleteCgpPoint(Cgp cgpPoint) {
+        cgpPoints.remove(cgpPoint);
+    }
+
     public static List<Cgp> getCgpPoints() {
         return cgpPoints;
     }
 
     public static void setCgpPoints(List<Cgp> cgpPoints) {
         CgpDAOMock.cgpPoints = cgpPoints;
-    }
-
-    public static void addCgpPoints(List<Cgp> cgpPoints) {
-        CgpDAOMock.cgpPoints.addAll(cgpPoints);
     }
 }

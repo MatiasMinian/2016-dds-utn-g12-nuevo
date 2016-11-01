@@ -17,15 +17,26 @@ public class BusDAOMock {
 
     public static List<Bus> busPoints = new ArrayList<>();
 
+    //********** METHODS **********//
+
+    public static void saveOrUpdateBusPoint(Bus busPoint) {
+        Bus targetBusPoint = busPoints.stream().filter(bus -> bus.getId().equals(busPoint.getId())).findFirst().orElse(null);
+        if (targetBusPoint == null) {
+            busPoints.add(busPoint);
+        } else {
+            targetBusPoint = busPoint;
+        }
+    }
+
+    public static void deleteBusPoint(Bus busPoint) {
+        busPoints.remove(busPoint);
+    }
+
     public static List<Bus> getBusPoints() {
         return busPoints;
     }
 
     public static void setBusPoints(List<Bus> busPoints) {
         BusDAOMock.busPoints = busPoints;
-    }
-
-    public static void addBusPoints(List<Bus> busPoints) {
-        BusDAOMock.busPoints.addAll(busPoints);
     }
 }
