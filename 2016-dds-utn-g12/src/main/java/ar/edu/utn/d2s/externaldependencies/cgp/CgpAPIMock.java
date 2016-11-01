@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface CgpAPIMock {
 
-    public List<CenterDTOMock> search(String param);
+    public List<CenterDTOMock> searchCgps(String param);
 }
