@@ -19,8 +19,8 @@ public class BusDAOMock {
 
     //********** METHODS **********//
 
-    public static void saveOrUpdateBusPoint(Bus busPoint) {
-        Bus targetBusPoint = busPoints.stream().filter(bus -> bus.getId().equals(busPoint.getId())).findFirst().orElse(null);
+    public static void saveOrUpdate(Bus busPoint) {
+        Bus targetBusPoint = findById(busPoint.getId());
         if (targetBusPoint == null) {
             busPoints.add(busPoint);
         } else {
@@ -28,8 +28,12 @@ public class BusDAOMock {
         }
     }
 
-    public static void deleteBusPoint(Bus busPoint) {
+    public static void delete(Bus busPoint) {
         busPoints.remove(busPoint);
+    }
+
+    public static Bus findById(Long id) {
+        return busPoints.stream().filter(bus -> bus.getId().equals(id)).findFirst().orElse(null);
     }
 
     public static List<Bus> getBusPoints() {

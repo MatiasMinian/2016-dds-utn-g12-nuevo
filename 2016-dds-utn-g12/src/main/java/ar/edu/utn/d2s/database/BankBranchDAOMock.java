@@ -19,8 +19,8 @@ public class BankBranchDAOMock {
 
     //********** METHODS **********//
 
-    public static void saveOrUpdateBankBranchPoint(BankBranch bankBranchPoint) {
-        BankBranch targetBankBranchPoint = bankBranchPoints.stream().filter(bankBranch -> bankBranch.getId().equals(bankBranchPoint.getId())).findFirst().orElse(null);
+    public static void saveOrUpdate(BankBranch bankBranchPoint) {
+        BankBranch targetBankBranchPoint = findById(bankBranchPoint.getId());
         if (targetBankBranchPoint == null) {
             bankBranchPoints.add(bankBranchPoint);
         } else {
@@ -28,8 +28,12 @@ public class BankBranchDAOMock {
         }
     }
 
-    public static void deleteBankBranchPoint(BankBranch bankBranchPoint) {
+    public static void delete(BankBranch bankBranchPoint) {
         bankBranchPoints.remove(bankBranchPoint);
+    }
+
+    public static BankBranch findById(Long id) {
+        return bankBranchPoints.stream().filter(bankBranch -> bankBranch.getId().equals(id)).findFirst().orElse(null);
     }
 
     public static List<BankBranch> getBankBranchPoints() {

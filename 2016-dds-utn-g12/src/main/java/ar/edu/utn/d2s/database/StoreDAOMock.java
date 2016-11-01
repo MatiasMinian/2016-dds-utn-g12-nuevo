@@ -19,8 +19,8 @@ public class StoreDAOMock {
 
     //********** METHODS **********//
 
-    public static void saveOrUpdateStorePoint(Store storePoint) {
-        Store targetStorePoint = storePoints.stream().filter(store -> store.getId().equals(storePoint.getId())).findFirst().orElse(null);
+    public static void saveOrUpdate(Store storePoint) {
+        Store targetStorePoint = findById(storePoint.getId());
         if (targetStorePoint == null) {
             storePoints.add(storePoint);
         } else {
@@ -28,8 +28,12 @@ public class StoreDAOMock {
         }
     }
 
-    public static void deleteStorePoint(Store storePoint) {
+    public static void delete(Store storePoint) {
         storePoints.remove(storePoint);
+    }
+
+    public static Store findById(Long id) {
+        return storePoints.stream().filter(store -> store.getId().equals(id)).findFirst().orElse(null);
     }
 
     public static List<Store> getStorePoints() {

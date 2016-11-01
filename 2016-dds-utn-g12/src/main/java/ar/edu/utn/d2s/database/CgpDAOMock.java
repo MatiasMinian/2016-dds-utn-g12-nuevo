@@ -19,8 +19,8 @@ public class CgpDAOMock {
 
     //********** METHODS **********//
 
-    public static void saveOrUpdateCgpPoint(Cgp cgpPoint) {
-        Cgp targetCgpPoint = cgpPoints.stream().filter(cgp -> cgp.getId().equals(cgpPoint.getId())).findFirst().orElse(null);
+    public static void saveOrUpdate(Cgp cgpPoint) {
+        Cgp targetCgpPoint = findById(cgpPoint.getId());
         if (targetCgpPoint == null) {
             cgpPoints.add(cgpPoint);
         } else {
@@ -28,8 +28,12 @@ public class CgpDAOMock {
         }
     }
 
-    public static void deleteCgpPoint(Cgp cgpPoint) {
+    public static void delete(Cgp cgpPoint) {
         cgpPoints.remove(cgpPoint);
+    }
+
+    public static Cgp findById(Long id) {
+        return cgpPoints.stream().filter(cgp -> cgp.getId().equals(id)).findFirst().orElse(null);
     }
 
     public static List<Cgp> getCgpPoints() {
