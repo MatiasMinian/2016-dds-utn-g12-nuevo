@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 public abstract class PointOfInterest {
 
+    protected Long id;
     protected String name;
     protected String icon;
     protected Address address;
@@ -30,6 +31,11 @@ public abstract class PointOfInterest {
 
 
     //********** GETTERS & SETTERS **********//
+
+
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         if(name == null) {
@@ -59,5 +65,13 @@ public abstract class PointOfInterest {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public double getCloseRange() {
+        return closeRange;
+    }
+
+    public void setCloseRange(double closeRange) {
+        this.closeRange = closeRange;
     }
 }
