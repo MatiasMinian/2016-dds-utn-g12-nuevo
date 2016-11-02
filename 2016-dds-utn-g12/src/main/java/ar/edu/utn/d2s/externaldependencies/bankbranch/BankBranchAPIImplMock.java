@@ -47,6 +47,6 @@ public class BankBranchAPIImplMock implements BankBranchAPIMock {
         List<String> services = new ArrayList<>();
         servicesNode.elements().forEachRemaining(jsonNode -> services.add(jsonNode.asText()));
 
-        return bankName.equals(bank) && services.contains(service);
+        return bankName.equalsIgnoreCase(bank) && services.contains(service);
     }
 }
