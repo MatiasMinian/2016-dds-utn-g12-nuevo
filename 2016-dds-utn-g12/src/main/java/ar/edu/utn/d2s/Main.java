@@ -8,5 +8,9 @@ public class Main
 
         // TODO Lower case the service name passed as an argument to the Bank API
 
+        // TODO Make a PointOfInteresDAO to look for PointsOfInteres when you just need to see a list of them as PointOfInterest
+
+        // TODO Remember to inject a TimeSchedule created with the methdod forBusinessWeek to BankBranch creations
+
     }
 }
