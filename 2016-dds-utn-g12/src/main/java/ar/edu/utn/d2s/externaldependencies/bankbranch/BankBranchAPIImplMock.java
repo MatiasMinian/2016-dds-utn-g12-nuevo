@@ -34,20 +34,19 @@ public class BankBranchAPIImplMock implements BankBranchAPIMock {
     }
 
     private boolean bankMatchesValues(String bankBranchJSON, String bank, String service) {
-        // TODO Implement it
+        // TODO Test if this implementation is OK
         JsonNode rootNode = null;
         try {
             rootNode = (new ObjectMapper()).readTree(bankBranchJSON);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JsonNode bankNameNode = rootNode.path("banco");
+        String bankName = rootNode.path("banco").asText();
+
         JsonNode servicesNode = rootNode.path("servicios");
-        //servicesNode.getE
+        List<String> services = new ArrayList<>();
+        servicesNode.elements().forEachRemaining(jsonNode -> services.add(jsonNode.asText()));
 
-
-
-
-        return false;
+        return bankName.equals(bank) && services.contains(service);
     }
 }
