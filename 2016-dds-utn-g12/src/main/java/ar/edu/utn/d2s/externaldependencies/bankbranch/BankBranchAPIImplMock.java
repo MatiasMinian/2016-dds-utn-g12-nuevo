@@ -41,9 +41,9 @@ public class BankBranchAPIImplMock implements BankBranchAPIMock {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String bankName = rootNode.path("banco").asText();
+        String bankName = rootNode.path("bank").asText();
 
-        JsonNode servicesNode = rootNode.path("servicios");
+        JsonNode servicesNode = rootNode.path("services");
         List<String> services = new ArrayList<>();
         servicesNode.elements().forEachRemaining(jsonNode -> services.add(jsonNode.asText()));
 

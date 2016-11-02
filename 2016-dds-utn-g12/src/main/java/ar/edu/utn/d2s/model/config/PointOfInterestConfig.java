@@ -9,4 +9,9 @@ public class PointOfInterestConfig {
 
     public static final double POI_CLOSE_RANGE = 0.5;
     public static final double BUS_CLOSE_RANGE = 0.1;
+
+    public static final int BANKS_START_HOURS = 10;
+    public static final int BANKS_START_MINUTES = 0;
+    public static final int BANKS_END_HOURS = 15;
+    public static final int BANKS_END_MINUTES = 0;
 }
