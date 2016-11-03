@@ -15,6 +15,15 @@ import java.util.stream.Collectors;
 
 public class SearchPointsService {
 
+    private static SearchPointsService instance = null;
+
+    public static SearchPointsService getInstance() {
+        if (instance == null) {
+            instance = new SearchPointsService();
+        }
+        return instance;
+    }
+
     /**
      * TODO
      * When UI should be implemented include this four methods in one to respond
