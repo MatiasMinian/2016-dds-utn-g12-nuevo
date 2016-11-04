@@ -6,13 +6,22 @@ import java.util.stream.Collectors;
 
 public class CgpAPIImplMock implements CgpAPIMock {
 
-    private static List<CenterDTOMock> centersDTO = new ArrayList<>();
+    private static CgpAPIImplMock instance = null;
 
-    {
+    private List<CenterDTOMock> centersDTO = new ArrayList<>();
+
+    public CgpAPIImplMock() {
         initializeCenters();
     }
 
-    private static void initializeCenters() {
+    public static CgpAPIImplMock getInstance() {
+        if (instance == null) {
+            instance = new CgpAPIImplMock();
+        }
+        return instance;
+    }
+
+    private void initializeCenters() {
         // TODO Create some centerDTO objects and add them to the centersDTO list
     }
 

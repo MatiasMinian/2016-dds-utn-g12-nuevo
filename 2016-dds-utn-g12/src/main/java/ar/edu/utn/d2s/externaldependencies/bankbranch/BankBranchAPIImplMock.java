@@ -10,14 +10,23 @@ import java.util.stream.Collectors;
 
 public class BankBranchAPIImplMock implements BankBranchAPIMock {
 
-    // Each String corresponds to a bank branch represented as a JSON
-    private static List<String> bankBranchesJSON = new ArrayList<>();
+    private static BankBranchAPIImplMock instance = null;
 
-    {
+    // Each String corresponds to a bank branch represented as a JSON
+    private List<String> bankBranchesJSON = new ArrayList<>();
+
+    public BankBranchAPIImplMock() {
         initializeBankBranches();
     }
 
-    private static void initializeBankBranches() {
+    public static BankBranchAPIImplMock getInstance() {
+        if (instance == null) {
+            instance = new BankBranchAPIImplMock();
+        }
+        return instance;
+    }
+
+    private void initializeBankBranches() {
         // TODO Create some Bank Branches, each one as a JSON, and add them to the bankBranchesJSON list
     }
 
@@ -35,18 +44,19 @@ public class BankBranchAPIImplMock implements BankBranchAPIMock {
 
     private boolean bankMatchesValues(String bankBranchJSON, String bank, String service) {
         // TODO Test if this implementation is OK
-        JsonNode rootNode = null;
+        String bankName = "";
+        List<String> services = new ArrayList<>();
         try {
-            rootNode = (new ObjectMapper()).readTree(bankBranchJSON);
+            JsonNode rootNode = (new ObjectMapper()).readTree(bankBranchJSON);
+
+            bankName = rootNode.path("bank").asText();
+
+
+            JsonNode servicesNode = rootNode.path("services");
+            servicesNode.elements().forEachRemaining(jsonNode -> services.add(jsonNode.asText()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String bankName = rootNode.path("bank").asText();
-
-        JsonNode servicesNode = rootNode.path("services");
-        List<String> services = new ArrayList<>();
-        servicesNode.elements().forEachRemaining(jsonNode -> services.add(jsonNode.asText()));
-
         return bankName.equalsIgnoreCase(bank) && services.contains(service);
     }
 }
