@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 public class SearchPointsServiceTest {
 
-    private SearchPointsService searchPointsService;
+    private DefaultSearchPointsService defaultSearchPointsService;
 
     private BankBranch bankBranchHSBC;
     private BankBranch bankBranchBankNorth;
@@ -40,7 +40,7 @@ public class SearchPointsServiceTest {
     @Before
     public void setUp() throws Exception {
 
-        searchPointsService = new SearchPointsService();
+        defaultSearchPointsService = new DefaultSearchPointsService();
 
         //********** BANK BRANCH SET UP **********//
 
@@ -124,9 +124,11 @@ public class SearchPointsServiceTest {
 
     }
 
+    // TODO Change all this test for one with searchPoints. All the search methods here change them to private
+
     @Test
     public void searchBankBranchByTextTest() throws Exception {
-        List<BankBranch> bankBranchPoints = searchPointsService.searchBankBranchByText("Ban");
+        List<BankBranch> bankBranchPoints = defaultSearchPointsService.searchBankBranchByText("Ban");
         assertTrue(bankBranchPoints.contains(bankBranchBankNorth));
         assertTrue(bankBranchPoints.contains(bankBranchBankWest));
 
@@ -134,28 +136,28 @@ public class SearchPointsServiceTest {
 
     @Test
     public void searchBusByTextTest() throws Exception {
-        Bus bus = searchPointsService.searchBusByText("161");
+        Bus bus = defaultSearchPointsService.searchBusByText("161");
         assertTrue(bus.equals(bus161));
 
     }
 
     @Test
     public void searchCgpByTextTest() throws Exception {
-        List<Cgp> cgpPoints = searchPointsService.searchCgpByText("110");
+        List<Cgp> cgpPoints = defaultSearchPointsService.searchCgpByText("110");
         assertTrue(cgpPoints.contains(cgp110));
 
-        cgpPoints = searchPointsService.searchCgpByText("Sal");
+        cgpPoints = defaultSearchPointsService.searchCgpByText("Sal");
         assertTrue(cgpPoints.contains(cgp30));
         assertTrue(cgpPoints.contains(cgp54));
     }
 
     @Test
     public void searchStoreByTextTest() throws Exception {
-        List<Store> storePoints = searchPointsService.searchStoreByText("Samsung");
+        List<Store> storePoints = defaultSearchPointsService.searchStoreByText("Samsung");
         assertTrue(storePoints.contains(storeSamsung));
         assertTrue(storePoints.contains(storeTech));
 
-        storePoints = searchPointsService.searchStoreByText("Books");
+        storePoints = defaultSearchPointsService.searchStoreByText("Books");
         assertTrue(storePoints.contains(storeBookshop));
     }
 }
