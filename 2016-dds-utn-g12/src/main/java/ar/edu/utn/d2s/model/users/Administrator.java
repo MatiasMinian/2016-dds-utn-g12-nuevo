@@ -3,9 +3,11 @@ package ar.edu.utn.d2s.model.users;
 public class Administrator {
 
     private String mail;
+    private long searchTimeLimit;
 
-    public Administrator(String mail) {
+    public Administrator(String mail, long searchTimeLimit) {
         this.mail = mail;
+        this.searchTimeLimit = searchTimeLimit;
     }
 
     public String getMail() {
@@ -17,5 +19,13 @@ public class Administrator {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public long getSearchTimeLimit() {
+        return searchTimeLimit;
+    }
+
+    public void setSearchTimeLimit(long searchTimeLimit) {
+        this.searchTimeLimit = searchTimeLimit;
     }
 }
