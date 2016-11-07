@@ -6,6 +6,8 @@ import ar.edu.utn.d2s.database.CgpDAOMock;
 import ar.edu.utn.d2s.database.StoreDAOMock;
 import ar.edu.utn.d2s.model.points.*;
 import ar.edu.utn.d2s.utils.StringUtil;
+import ar.edu.utn.d2s.utils.Timer;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +31,9 @@ public class DefaultSearchPointsService implements SearchPointsService {
     public Set<PointOfInterest> searchPoints(String text) {
         // TODO Instead access data with a PointOfInterest DAO to bring all together
 
+        Timer myTimer = new Timer();
+        myTimer.start();
+
         Set<String> words = StringUtil.getUniqueWordsFromText(text);
 
         Set<PointOfInterest> points = new HashSet<>();
@@ -40,6 +45,11 @@ public class DefaultSearchPointsService implements SearchPointsService {
             points.addAll(searchStoreByText(word));
         });
         points.addAll(searchExternalPointsService.searchPoints(text));
+
+        myTimer.stop();
+
+        LogManager.getLogger(this.getClass()).info("Search: %s. Number of results: %d. Response time: %d.", text, points.size(), myTimer.getDuration());
+
         return points;
     }
 
