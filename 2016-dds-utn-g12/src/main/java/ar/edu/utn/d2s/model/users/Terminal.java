@@ -5,7 +5,7 @@ import ar.edu.utn.d2s.model.search.SearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Terminal {
+public class Terminal extends User {
 
     private boolean storeSearchResults;
     private List<SearchResult> searchResults;

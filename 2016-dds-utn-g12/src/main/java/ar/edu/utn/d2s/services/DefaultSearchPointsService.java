@@ -5,6 +5,8 @@ import ar.edu.utn.d2s.database.BusDAOMock;
 import ar.edu.utn.d2s.database.CgpDAOMock;
 import ar.edu.utn.d2s.database.StoreDAOMock;
 import ar.edu.utn.d2s.model.points.*;
+import ar.edu.utn.d2s.services.observers.ObserverAdminsService;
+import ar.edu.utn.d2s.services.observers.SearchObserver;
 import ar.edu.utn.d2s.utils.StringUtil;
 import ar.edu.utn.d2s.utils.Timer;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +22,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
     private static DefaultSearchPointsService instance = null;
 
     private SearchPointsService searchExternalPointsService = ExternalSearchPointsService.getInstance();
+    private SearchObserver observerAdminsService = ObserverAdminsService.getInstance();
 
     public static DefaultSearchPointsService getInstance() {
         if (instance == null) {
@@ -49,6 +52,8 @@ public class DefaultSearchPointsService implements SearchPointsService {
         myTimer.stop();
 
         LogManager.getLogger(this.getClass()).info("Search: %s. Number of results: %d. Response time: %d.", text, points.size(), myTimer.getDuration());
+
+        notifyObservers(myTimer.getDuration());
 
         return points;
     }
@@ -81,5 +86,9 @@ public class DefaultSearchPointsService implements SearchPointsService {
 
     public boolean storeFilterCriteria(Store store, String text) {
         return store.getName().startsWith(text) || store.getKeywords().contains(text) || store.getCategory().getName().equals(text);
+    }
+
+    private void notifyObservers(long searchTime) {
+        observerAdminsService.handleNewSearch(searchTime);
     }
 }

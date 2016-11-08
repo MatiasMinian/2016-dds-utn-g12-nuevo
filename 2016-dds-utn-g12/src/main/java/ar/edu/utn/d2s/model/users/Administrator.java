@@ -1,6 +1,6 @@
 package ar.edu.utn.d2s.model.users;
 
-public class Administrator {
+public class Administrator extends User {
 
     private String mail;
     private long searchTimeLimit;
