@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface SearchPointsService {
 
-    public Set<PointOfInterest> searchPoints(String text);
+    public Set<PointOfInterest> searchPoints(String text, Long userId);
 }

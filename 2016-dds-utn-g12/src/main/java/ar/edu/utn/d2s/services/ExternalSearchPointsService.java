@@ -30,7 +30,7 @@ public class ExternalSearchPointsService implements SearchPointsService {
      * @param text the text search
      * @return the points of interest matched by the external services
      */
-    public Set<PointOfInterest> searchPoints(String text) {
+    public Set<PointOfInterest> searchPoints(String text, Long userId) {
         BankBranchAPIMock bankBranchAPI = BankBranchAPIImplMock.getInstance();
         CgpAPIMock cgpAPI = CgpAPIImplMock.getInstance();
 

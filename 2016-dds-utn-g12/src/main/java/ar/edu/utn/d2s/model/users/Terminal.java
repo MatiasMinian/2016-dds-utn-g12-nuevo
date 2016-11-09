@@ -10,6 +10,10 @@ public class Terminal extends User {
     private boolean storeSearchResults;
     private List<SearchResult> searchResults;
 
+    public void addSearchResult(SearchResult searchResult) {
+        searchResults.add(searchResult);
+    }
+
     public Terminal(boolean storeSearchResults) {
         this.storeSearchResults = storeSearchResults;
     }

@@ -1,10 +1,10 @@
 package ar.edu.utn.d2s.services;
 
-import ar.edu.utn.d2s.database.BankBranchDAOMock;
-import ar.edu.utn.d2s.database.BusDAOMock;
-import ar.edu.utn.d2s.database.CgpDAOMock;
-import ar.edu.utn.d2s.database.StoreDAOMock;
+import ar.edu.utn.d2s.database.*;
 import ar.edu.utn.d2s.model.points.*;
+import ar.edu.utn.d2s.model.search.SearchResult;
+import ar.edu.utn.d2s.model.users.Terminal;
+import ar.edu.utn.d2s.model.users.User;
 import ar.edu.utn.d2s.services.observers.SearchObserverAdminsService;
 import ar.edu.utn.d2s.services.observers.SearchObserver;
 import ar.edu.utn.d2s.utils.StringUtil;
@@ -31,7 +31,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
         return instance;
     }
 
-    public Set<PointOfInterest> searchPoints(String text) {
+    public Set<PointOfInterest> searchPoints(String text, Long userId) {
         // TODO Instead access data with a PointOfInterest DAO to bring all together
 
         Timer myTimer = new Timer();
@@ -47,13 +47,25 @@ public class DefaultSearchPointsService implements SearchPointsService {
             points.addAll(searchCgpByText(word));
             points.addAll(searchStoreByText(word));
         });
-        points.addAll(searchExternalPointsService.searchPoints(text));
+        points.addAll(searchExternalPointsService.searchPoints(text, userId));
 
         myTimer.stop();
 
         LogManager.getLogger(this.getClass()).info("Search: %s. Number of results: %d. Response time: %d.", text, points.size(), myTimer.getDuration());
 
         notifyObservers(myTimer.getDuration(), points.size());
+
+        // TODO Instead access data with Terminal DAO
+        User user = UserDAOMock.findById(userId);
+        if (user instanceof Terminal) {
+            Terminal terminal = (Terminal) user;
+            if (terminal.isStoreSearchResults()) {
+                SearchResult searchResult = new SearchResult(text, points.size(), myTimer.getDuration(), points);
+                terminal.addSearchResult(searchResult);
+                TerminalDAOMock.saveOrUpdate(terminal);
+                UserDAOMock.saveOrUpdate(terminal);
+            }
+        }
 
         return points;
     }
