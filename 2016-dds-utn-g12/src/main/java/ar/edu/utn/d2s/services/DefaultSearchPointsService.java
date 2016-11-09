@@ -5,7 +5,7 @@ import ar.edu.utn.d2s.database.BusDAOMock;
 import ar.edu.utn.d2s.database.CgpDAOMock;
 import ar.edu.utn.d2s.database.StoreDAOMock;
 import ar.edu.utn.d2s.model.points.*;
-import ar.edu.utn.d2s.services.observers.ObserverAdminsService;
+import ar.edu.utn.d2s.services.observers.SearchObserverAdminsService;
 import ar.edu.utn.d2s.services.observers.SearchObserver;
 import ar.edu.utn.d2s.utils.StringUtil;
 import ar.edu.utn.d2s.utils.Timer;
@@ -22,7 +22,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
     private static DefaultSearchPointsService instance = null;
 
     private SearchPointsService searchExternalPointsService = ExternalSearchPointsService.getInstance();
-    private SearchObserver observerAdminsService = ObserverAdminsService.getInstance();
+    private SearchObserver observerAdminsService = SearchObserverAdminsService.getInstance();
 
     public static DefaultSearchPointsService getInstance() {
         if (instance == null) {
@@ -53,25 +53,25 @@ public class DefaultSearchPointsService implements SearchPointsService {
 
         LogManager.getLogger(this.getClass()).info("Search: %s. Number of results: %d. Response time: %d.", text, points.size(), myTimer.getDuration());
 
-        notifyObservers(myTimer.getDuration());
+        notifyObservers(myTimer.getDuration(), points.size());
 
         return points;
     }
 
     public List<BankBranch> searchBankBranchByText(String text) {
-        // TODO Instead access data with DAO (Don't do it if it's possible to jus use PointOfInterest DAO)
+        // TODO Instead access data with DAO (Don't do it if it's possible to just use PointOfInterest DAO)
         List<BankBranch> bankBranchPoints = new ArrayList<>(BankBranchDAOMock.bankBranchPoints);
         return bankBranchPoints.stream().filter(bankBranch -> bankBranch.getName().startsWith(text)).collect(Collectors.toList());
     }
 
     public Bus searchBusByText(String text) {
-        // TODO Instead access data with DAO (Don't do it if it's possible to jus use PointOfInterest DAO)
+        // TODO Instead access data with DAO (Don't do it if it's possible to just use PointOfInterest DAO)
         List<Bus> busPoints = new ArrayList<>(BusDAOMock.busPoints);
         return busPoints.stream().filter(bus -> text.equals(bus.getName())).findFirst().orElse(null);
     }
 
     public List<Cgp> searchCgpByText(String text) {
-        // TODO Instead access data with DAO (Don't do it if it's possible to jus use PointOfInterest DAO)
+        // TODO Instead access data with DAO (Don't do it if it's possible to just use PointOfInterest DAO)
         List<Cgp> cgpPoints = new ArrayList<>(CgpDAOMock.cgpPoints);
         return cgpPoints.stream().filter(cgp -> cgp.getCommune().getNumber().equals(text) ||
                         cgp.getServices().stream().anyMatch(service -> service.getName().startsWith(text)))
@@ -79,7 +79,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
     }
 
     public List<Store> searchStoreByText(String text) {
-        // TODO Instead access data with DAO (Don't do it if it's possible to jus use PointOfInterest DAO)
+        // TODO Instead access data with DAO (Don't do it if it's possible to just use PointOfInterest DAO)
         List<Store> storePoints = new ArrayList<>(StoreDAOMock.storePoints);
         return storePoints.stream().filter(store -> storeFilterCriteria(store, text)).collect(Collectors.toList());
     }
@@ -88,7 +88,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
         return store.getName().startsWith(text) || store.getKeywords().contains(text) || store.getCategory().getName().equals(text);
     }
 
-    private void notifyObservers(long searchTime) {
-        observerAdminsService.handleNewSearch(searchTime);
+    private void notifyObservers(long searchTime, int results) {
+        observerAdminsService.handleNewSearch(searchTime, results);
     }
 }

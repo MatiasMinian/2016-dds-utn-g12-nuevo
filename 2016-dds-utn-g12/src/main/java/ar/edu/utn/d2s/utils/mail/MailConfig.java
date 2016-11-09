@@ -9,4 +9,9 @@ public class MailConfig {
 
     public static final String MAIL_SENDER = "ddsutng12@gmail.com";
     public static final String MAIL_PASSWORD = "ddsg12";
+
+    public static final String LONG_SEARCH_ADMIN_SUBJECT = "Long search";
+    public static final String LONG_SEARCH_ADMIN_TIME = "Time in seconds: ";
+    public static final String LONG_SEARCH_ADMIN_RESULTS = "Number of results: ";
+
 }
