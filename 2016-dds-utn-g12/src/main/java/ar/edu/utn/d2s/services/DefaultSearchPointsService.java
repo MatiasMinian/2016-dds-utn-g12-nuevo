@@ -40,7 +40,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
 
         words.forEach(word -> {
             points.addAll(searchBankBranchByText(word));
-            points.add((PointOfInterest) searchBusByText(word));
+            points.add(searchBusByText(word));
             points.addAll(searchCgpByText(word));
             points.addAll(searchStoreByText(word));
         });
