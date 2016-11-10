@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class SearchResult {
 
+    private Long id;
     private String text;
     private int numberOfResults;
     private long searchTime;
@@ -20,6 +21,10 @@ public class SearchResult {
         this.searchTime = searchTime;
         this.date = date;
         this.points = points;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getText() {
@@ -47,6 +52,14 @@ public class SearchResult {
 
     public void setSearchTime(long searchTime) {
         this.searchTime = searchTime;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
     public Set<PointOfInterest> getPoints() {
