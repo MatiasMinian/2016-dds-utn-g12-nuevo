@@ -2,6 +2,7 @@ package ar.edu.utn.d2s.model.search;
 
 import ar.edu.utn.d2s.model.points.PointOfInterest;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,12 +11,14 @@ public class SearchResult {
     private String text;
     private int numberOfResults;
     private long searchTime;
+    private Calendar date;
     private Set<PointOfInterest> points;
 
-    public SearchResult(String text, int numberOfResults, long searchTime, Set<PointOfInterest> points) {
+    public SearchResult(String text, int numberOfResults, long searchTime, Calendar date, Set<PointOfInterest> points) {
         this.text = text;
         this.numberOfResults = numberOfResults;
         this.searchTime = searchTime;
+        this.date = date;
         this.points = points;
     }
 

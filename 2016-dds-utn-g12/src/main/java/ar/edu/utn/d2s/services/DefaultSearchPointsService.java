@@ -11,10 +11,7 @@ import ar.edu.utn.d2s.utils.StringUtil;
 import ar.edu.utn.d2s.utils.Timer;
 import org.apache.logging.log4j.LogManager;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DefaultSearchPointsService implements SearchPointsService {
@@ -60,7 +57,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
         if (user instanceof Terminal) {
             Terminal terminal = (Terminal) user;
             if (terminal.isStoreSearchResults()) {
-                SearchResult searchResult = new SearchResult(text, points.size(), myTimer.getDuration(), points);
+                SearchResult searchResult = new SearchResult(text, points.size(), myTimer.getDuration(), Calendar.getInstance(), points);
                 terminal.addSearchResult(searchResult);
                 TerminalDAOMock.saveOrUpdate(terminal);
                 UserDAOMock.saveOrUpdate(terminal);
