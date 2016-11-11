@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ReportTotalSearchesTerminal implements Action {
+public class ReportTotalSearchesTerminalAction implements Action {
 
     @Override
     public void execute(Terminal terminal) {
