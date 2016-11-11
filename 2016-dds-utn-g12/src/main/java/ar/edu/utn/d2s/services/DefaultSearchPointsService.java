@@ -61,6 +61,7 @@ public class DefaultSearchPointsService implements SearchPointsService {
                 terminal.addSearchResult(searchResult);
                 TerminalDAOMock.saveOrUpdate(terminal);
                 UserDAOMock.saveOrUpdate(terminal);
+                TerminalDAOMock.saveOrUpdate(terminal);
             }
 
             terminal.getActions().forEach(action -> action.execute(terminal));
