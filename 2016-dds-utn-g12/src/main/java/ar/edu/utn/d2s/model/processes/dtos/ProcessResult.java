@@ -1,4 +1,4 @@
-package ar.edu.utn.d2s.model.processes;
+package ar.edu.utn.d2s.model.processes.dtos;
 
 import java.util.ArrayList;
 import java.util.Calendar;

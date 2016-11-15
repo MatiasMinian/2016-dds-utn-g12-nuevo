@@ -11,8 +11,9 @@ import java.util.Set;
 public class Terminal extends User {
 
     private boolean storeSearchResults;
-    private List<SearchResult> searchResults;
-    private Set<Action> actions;
+    private List<SearchResult> searchResults = new ArrayList<>();
+    private Set<Action> actions = new HashSet<>();
+    private Set<Action> lastActions = new HashSet<>();
 
     public void addSearchResult(SearchResult searchResult) {
         searchResults.add(searchResult);
@@ -31,9 +32,6 @@ public class Terminal extends User {
     }
 
     public List<SearchResult> getSearchResults() {
-        if (searchResults == null) {
-            searchResults = new ArrayList<>();
-        }
         return searchResults;
     }
 
@@ -42,13 +40,12 @@ public class Terminal extends User {
     }
 
     public Set<Action> getActions() {
-        if (actions == null) {
-            actions = new HashSet<>();
-        }
         return actions;
     }
 
-    public void setActions(Set<Action> actions) {
-        this.actions = actions;
+    public void addActions(Set<Action> actions) {
+        lastActions.clear();
+        lastActions.addAll(this.actions);
+        this.actions.addAll(actions);
     }
 }

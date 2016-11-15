@@ -2,23 +2,29 @@ package ar.edu.utn.d2s.model.processes;
 
 import ar.edu.utn.d2s.database.StoreDAOMock;
 import ar.edu.utn.d2s.model.points.Store;
-import ar.edu.utn.d2s.model.users.Administrator;
+import ar.edu.utn.d2s.model.processes.dtos.ExecuteInfo;
+import ar.edu.utn.d2s.model.processes.dtos.FailureInfo;
+import ar.edu.utn.d2s.model.processes.dtos.ProcessResult;
 
 import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class UpdateStoresProcess implements SingleProcess {
+public class UpdateStoresProcess extends SingleProcess {
 
     public static final String UPDATE_STORES_PROCESS_NAME = "Update stores";
 
+    public UpdateStoresProcess(ExecuteInfo executeInfo) {
+        super(executeInfo);
+    }
+
     @Override
-    public void execute(Administrator administrator) {
+    public void execute() {
 
         ProcessResult processResult = new ProcessResult();
         processResult.setStartTime(Calendar.getInstance());
         processResult.setProcessName(UPDATE_STORES_PROCESS_NAME);
-        processResult.setUserName(administrator.getUsername());
+        processResult.setUserName(executeInfo.getAdministrator().getUsername());
 
         URL url = getClass().getResource(ProcessConfig.UPDATE_STORES_FILE_PATH);
         try(BufferedReader buffer = new BufferedReader(new FileReader(url.getPath()))) {
@@ -32,8 +38,10 @@ public class UpdateStoresProcess implements SingleProcess {
             processResult.setEndTime(Calendar.getInstance());
             processResult.setResult(ProcessResult.RESULT_ERROR);
             processResult.setErrorMessage(e.getMessage());
-
             ProcessResult.saveProcessResult(processResult);
+            if (executeInfo.getFailureStrategy() != null) {
+                executeInfo.getFailureStrategy().handleFailure(new FailureInfo(executeInfo.getAdministrator().getMail(), processResult.getErrorMessage(), this));
+            }
         }
 
         processResult.setEndTime(Calendar.getInstance());

@@ -12,7 +12,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ReportSearchesDateTerminalAction implements Action {
+public class ReportSearchesDateTerminalAction extends Action {
 
     @Override
     public void execute(Terminal terminal) {
