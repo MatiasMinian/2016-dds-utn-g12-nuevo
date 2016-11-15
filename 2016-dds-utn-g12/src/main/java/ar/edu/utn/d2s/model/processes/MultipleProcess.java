@@ -5,24 +5,25 @@ import ar.edu.utn.d2s.model.users.Administrator;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MultipleProcess extends Process {
+public class MultipleProcess implements Runnable {
 
-    private Set<Process> processes = new HashSet<>();
+    private Set<SingleProcess> processes = new HashSet<>();
+    private Administrator administrator;
 
     public MultipleProcess(Administrator administrator) {
-        super(administrator);
+        this.administrator = administrator;
     }
 
     @Override
-    public void execute(Administrator administrator) {
-        processes.forEach(Process::run);
+    public void run() {
+        processes.forEach(singleProcess -> singleProcess.execute(administrator));
     }
 
-    public void addProcess(Process process) {
+    public void addProcess(SingleProcess process) {
         processes.add(process);
     }
 
-    public void deleteProcess(Process process) {
+    public void removeProcess(SingleProcess process) {
         processes.remove(process);
     }
 }
