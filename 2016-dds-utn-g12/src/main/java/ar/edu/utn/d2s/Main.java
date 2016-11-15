@@ -12,5 +12,7 @@ public class Main
 
         // TODO Remember to inject a TimeSchedule created with the methdod forBusinessWeek to BankBranch creations
 
+        // TODO SEARCH POINTS IN CACHE INSIDE THE SEARCHPOINTS METHDO IN DEFAULTSEARCHPOINTSSERVICE
+
     }
 }
