@@ -8,7 +8,7 @@ public class ProcessResult {
 
     public static final int RESULT_OK = 1;
     public static final int RESULT_ERROR = 0;
-    // TODO Check where this list should be. Is it OK here ?
+    // TODO Check where this list should be. Is it OK here ? Should we persist this ?
     public static List<ProcessResult> processResults = new ArrayList<>();
 
     private Calendar startTime;
@@ -18,7 +18,7 @@ public class ProcessResult {
     private int result;
     private String errorMessage;
 
-    public static void addProcessResult(ProcessResult processResult) {
+    public static void saveProcessResult(ProcessResult processResult) {
         processResults.add(processResult);
     }
     public static void removeProcessResult(ProcessResult processResult) {

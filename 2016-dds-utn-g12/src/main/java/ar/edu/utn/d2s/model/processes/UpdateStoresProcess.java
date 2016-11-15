@@ -15,7 +15,10 @@ public class UpdateStoresProcess implements SingleProcess {
     @Override
     public void execute(Administrator administrator) {
 
-        Calendar startTime = Calendar.getInstance();
+        ProcessResult processResult = new ProcessResult();
+        processResult.setStartTime(Calendar.getInstance());
+        processResult.setProcessName(UPDATE_STORES_PROCESS_NAME);
+        processResult.setUserName(administrator.getUsername());
 
         URL url = getClass().getResource(ProcessConfig.UPDATE_STORES_FILE_PATH);
         try(BufferedReader buffer = new BufferedReader(new FileReader(url.getPath()))) {
@@ -26,7 +29,16 @@ public class UpdateStoresProcess implements SingleProcess {
             buffer.close();
         } catch (Exception e) {
             e.printStackTrace();
+            processResult.setEndTime(Calendar.getInstance());
+            processResult.setResult(ProcessResult.RESULT_ERROR);
+            processResult.setErrorMessage(e.getMessage());
+
+            ProcessResult.saveProcessResult(processResult);
         }
+
+        processResult.setEndTime(Calendar.getInstance());
+        processResult.setResult(ProcessResult.RESULT_OK);
+        ProcessResult.saveProcessResult(processResult);
     }
 
     private void processLine(String line) {
